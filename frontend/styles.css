@@ -1,0 +1,97 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background: url('pic4.png') no-repeat center center fixed; /* Full-page background */
+  background-size: cover;
+}
+
+h1, h2 {
+  color: white; /* Make the text white for better contrast */
+}
+
+p.lead {
+  color: #f0f0f0; /* Light color for the paragraph */
+}
+
+section {
+  padding: 60px;
+  position: relative;
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark overlay */
+  z-index: -1; /* Place the overlay behind the text */
+}
+
+/* Button Styles */
+.btn {
+  background-color: #ffd700; /* Gold button */
+  color: black;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 10px;
+}
+
+.btn:hover {
+  background-color: #ffcc00;
+}
+
+input, select {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Ensure the text stays on top of the overlay */
+section h1, section h2, section p, section .btn {
+  position: relative;
+  z-index: 1; /* Makes sure the text appears above the overlay */
+}
+h1, h2 {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Dark shadow to outline the text */
+}
+
+p.lead {
+  color: #f0f0f0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* Lighter shadow for paragraph text */
+}
+h1 {
+  font-size: 50px; /* Larger font size for the main heading */
+}
+
+h2 {
+  font-size: 35px; /* Adjust the secondary heading size */
+}
+
+p.lead {
+  font-size: 20px;
+  color: #f0f0f0; /* Lighter color for better readability */
+}

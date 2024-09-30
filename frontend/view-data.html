@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submitted Data</title>
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-color: #f8f9fa; /* Light background for contrast */
+    }
+    .table-container {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .navbar {
+      margin-bottom: 40px; /* Create spacing below navbar */
+    }
+    h2 {
+      color: #343a40; /* Bootstrap dark */
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Apparel Platform</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#contact">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Data Display Section -->
+  <section class="py-5" style="margin-top: 80px;">
+    <div class="container">
+      <h2 class="text-center">Submitted Data</h2>
+      <div class="table-container">
+        <div id="dataDisplay" class="table-responsive">
+          <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th>Name</th>
+                <th>Type of Apparel</th>
+                <th>Condition</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Data will be appended here by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Fetch the submissions from localStorage
+      const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+
+      const dataDisplay = document.getElementById('dataDisplay').getElementsByTagName('tbody')[0];
+
+      // Check if submissions exist
+      if (submissions.length > 0) {
+        submissions.forEach(submission => {
+          const row = dataDisplay.insertRow();
+          row.insertCell(0).innerText = submission.name;
+          row.insertCell(1).innerText = submission.type;
+          row.insertCell(2).innerText = submission.condition;
+          row.insertCell(3).innerText = submission.action;
+        });
+      } else {
+        // If no submissions are found, display a message
+        const row = dataDisplay.insertRow();
+        const cell = row.insertCell(0);
+        cell.colSpan = 4;
+        cell.innerText = 'No data available';
+        cell.classList.add('text-center');
+      }
+    });
+  </script>
+
+</body>
+</html>

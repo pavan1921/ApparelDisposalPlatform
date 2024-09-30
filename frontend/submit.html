@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Your Apparel</title>
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-image: url('pic4.png'); /* Ensure the image path is correct */
+      background-size: cover;
+      background-position: center;
+      color: black; /* Text color to contrast the background */
+    }
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Apparel Platform</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#contact">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Submission Form Section -->
+  <section id="submit" class="py-5" style="margin-top: 80px;">
+    <div class="container">
+      <h2 class="text-center mb-4">Submit Your Apparel</h2>
+      <div class="form-container">
+        <!-- Notice we added onsubmit="handleFormSubmit()" -->
+        <form id="apparelForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <label for="type">Type of Apparel</label>
+            <input type="text" class="form-control" id="type" placeholder="e.g., Shirt, Pants" required>
+          </div>
+          <div class="form-group">
+            <label for="condition">Condition</label>
+            <input type="text" class="form-control" id="condition" placeholder="New, Gently Used, Worn Out" required>
+          </div>
+          <div class="form-group">
+            <label for="action">What would you like to do with this apparel?</label>
+            <select class="form-control" id="action" required>
+              <option value="">Select an option</option>
+              <option value="donate">Donate</option>
+              <option value="recycle">Recycle</option>
+              <option value="dispose">Dispose</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light py-3">
+    <div class="container text-center">
+      <p>&copy; 2024 Apparel Disposal Platform. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Simple JavaScript to store data and redirect -->
+  <script>
+    function handleFormSubmit(event) {
+      event.preventDefault(); // Prevent the form from reloading the page
+
+      // Collect form data
+      const name = document.getElementById('name').value;
+      const type = document.getElementById('type').value;
+      const condition = document.getElementById('condition').value;
+      const action = document.getElementById('action').value;
+
+      // Get existing submissions or create an empty array
+      const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+
+      // Add new submission
+      submissions.push({ name, type, condition, action });
+
+      // Store updated submissions back in localStorage
+      localStorage.setItem('submissions', JSON.stringify(submissions));
+
+      // Redirect to thank you page
+      window.location.href = 'thank-you.html';
+    }
+  </script>
+
+</body>
+</html>
